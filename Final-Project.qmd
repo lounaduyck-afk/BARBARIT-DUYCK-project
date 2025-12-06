@@ -339,3 +339,35 @@ summary_table |>
 -   Annee
 -   Sex: coded as a factor, it expresses the gender category of the observation, distinguishing between females, males, and the total population
 -   Chomeur: number of unemployed people (based on the INSEE's definition of unemployment)
+
+# Merging the databases
+
+## Code
+
+```{r}
+DVFcensus <- DVF_panel |>
+  filter(Annee %in% c(2022, 2016))
+
+Population_filtered <- Population |>
+  filter(Annee %in% c(2022, 2016))
+
+Unemployment_filtered <- Unemployment |>
+  filter(Annee%in%c(2016,2022))
+```
+
+```{r}
+Merge <- left_join(
+  DVFcensus,
+  Population_filtered,
+  by = join_by(INSEE_COM, Annee)
+)
+
+Merge <- Merge |>
+  left_join(
+    Unemployment_filtered,
+    by = join_by(INSEE_COM, Annee))
+```
+
+## Description
+
+From the 3 data bases, we only kept data from 2016 and 2022, years of census and common to all bases. Using left join, because we wanted to keep all the observations we have in the initial panel set and match them with additional data we have from the two other data sets, we merged the data sets. Before merging, we ensured that the structure of the three data sets where coherent to be merged. We did this work in previous sections.
