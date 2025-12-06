@@ -426,3 +426,18 @@ scale_color_viridis_c(trans = "log") +
 labs(title = "Average Price per Municipality (2024)", color = "Average prices (€)") +
 theme_minimal()
 ```
+
+```{r}
+df_2014 <- DVF_panel |>
+filter(Annee == 2014)
+
+carte_2014 <- communes_sf |>
+mutate(code_insee_de_la_commune = sprintf("%05s", trimws(code_insee_de_la_commune))) |>
+left_join(df_2014, by = c("code_insee_de_la_commune" = "INSEE_COM"))
+
+ggplot(carte_2014) +
+geom_sf(aes(color = PrixMoyen), size = 1, alpha = 0.7) +
+scale_color_viridis_c(trans = "log") +
+labs(title = "Average Price per Municipality (2014)", color = "Average Price (€)") +
+theme_minimal()
+```
