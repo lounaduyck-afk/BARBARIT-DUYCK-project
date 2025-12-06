@@ -30,6 +30,7 @@ library(ggplot2)
 library(vroom)
 library(purrr)
 library(stringr)
+library(sf)
 ```
 
 # Link to the github project
@@ -405,4 +406,23 @@ mutate(code_insee_de_la_commune = sprintf("%05s", trimws(code_insee_de_la_commun
 
 communes_poly <- st_read(gpkg_path, layer = "commune") |>
 mutate(code_insee = sprintf("%05s", trimws(code_insee)))
+```
+
+# Graphical representations
+
+## 2024 (points)
+
+```{r}
+df_2024 <- DVF_panel |>
+filter(Annee == 2024)
+
+carte_2024 <- communes_sf |>
+mutate(code_insee_de_la_commune = sprintf("%05s", trimws(code_insee_de_la_commune))) |>
+left_join(df_2024, by = c("code_insee_de_la_commune" = "INSEE_COM"))
+
+ggplot(carte_2024) +
+geom_sf(aes(color = PrixMoyen), size = 1, alpha = 0.7) +
+scale_color_viridis_c(trans = "log") +
+labs(title = "Average Price per Municipality (2024)", color = "Average prices (€)") +
+theme_minimal()
 ```
