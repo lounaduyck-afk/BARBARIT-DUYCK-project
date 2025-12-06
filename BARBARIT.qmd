@@ -1,6 +1,8 @@
 ---
 title: "BARBARIT"
-author: "Barbarit Clara"
-format: html
+author: "BARBARIT Clara"
+format:
+  html: default
+  pdf: default
+editor: visual
 ---
-
