@@ -371,3 +371,27 @@ Merge <- Merge |>
 ## Description
 
 From the 3 data bases, we only kept data from 2016 and 2022, years of census and common to all bases. Using left join, because we wanted to keep all the observations we have in the initial panel set and match them with additional data we have from the two other data sets, we merged the data sets. Before merging, we ensured that the structure of the three data sets where coherent to be merged. We did this work in previous sections.
+
+## Geographical data
+
+​​<https://geoservices.ign.fr/adminexpress>
+
+The ADMIN EXPRESS product line centralizes five related datasets: ADMIN EXPRESS, ADMIN EXPRESS COG, ADMIN EXPRESS COG CARTO, ADMIN EXPRESS COG CARTO Petite Échelle, and ADMIN EXPRESS COG CARTOPLUS PE. Together, these datasets provide detailed administrative boundary layers for France across multiple levels. They include the following geographic units:
+
+-   Arrondissements (departmental and municipal)
+
+-   Cantons
+
+-   Administrative seats (chef-lieux) at various levels: arrondissement, municipal arrondissement, EPCI, canton, territorial collectivity, commune, associated or delegated commune, département, and region
+
+-   Communes and associated or delegated communes
+
+-   Départements
+
+-   EPCIs (public inter-municipal cooperation bodies)
+
+-   Regions
+
+The main product, ADMIN EXPRESS, provides large-scale administrative boundaries and is updated monthly. An additional edition, ADMIN EXPRESS COG, is aligned with the Code Officiel Géographique (COG) published annually by INSEE.
+
+This product line facilitates combining administrative boundaries with external datasets to build thematic representations of the French territory at different administrative levels. For our project, we mainly rely on the commune layer, as it gives the spatial unit necessary to merge geographic boundaries with demographic, employment, and real-estate datasets at the municipal level.
